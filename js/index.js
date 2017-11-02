@@ -8,7 +8,9 @@ $('footer>div').click(function(){
   var isLoading = false 
 
   function getData(){
-      if(isLoading) return 
+      if(isLoading) return
+      isLoading = true 
+      $('.loading').show()
     $.ajax({
         url:'http://api.douban.com/v2/movie/top250',
         type:'GET',
@@ -25,6 +27,7 @@ $('footer>div').click(function(){
         console.log('error')
     }).always(function(){
         isLoading = false 
+        $('.loading').hide()
     })
   }
   
@@ -79,6 +82,6 @@ $('footer>div').click(function(){
           return arr.join('、')
         })
         
-       $('section').eq(0).append(node);
+       $('#container').append(node);
     });
   }

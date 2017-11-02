@@ -59,8 +59,18 @@
     color:red;
   }
 
-  
-  
+  .loading{
+      text-align: center;
+      display: none;
+  }
+  .loading .iconfont{
+    animation: 1s linear rotate infinite;
+    display: inline-block;
+  }
+  @keyframes rotate {
+      form {transform: rotate(0deg)}
+      to{transform: rotate(360deg)}
+  }
   footer{
     position:absoult;
     bottom:0;
