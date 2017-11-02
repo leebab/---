@@ -5,7 +5,10 @@ $('footer>div').click(function(){
   })
   getData()
   var index = 0;
+  var isLoading = false 
+
   function getData(){
+      if(isLoading) return 
     $.ajax({
         url:'http://api.douban.com/v2/movie/top250',
         type:'GET',
@@ -20,6 +23,8 @@ $('footer>div').click(function(){
       console.log(ret)
     }).fail(function(){
         console.log('error')
+    }).always(function(){
+        isLoading = false 
     })
   }
   
