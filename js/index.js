@@ -16,6 +16,7 @@ $('footer>div').click(function(){
         dataType:'jsonp'
     }).done(function(ret){
         setData(ret)
+        index+=20
       console.log(ret)
     }).fail(function(){
         console.log('error')
