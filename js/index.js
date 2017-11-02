@@ -3,20 +3,30 @@ $('footer>div').click(function(){
     $('.main section').hide().eq(index).fadeIn();
     $(this).addClass('active').siblings().removeClass('active')
   })
+  getData()
+  var index = 0;
+  function getData(){
+    $.ajax({
+        url:'http://api.douban.com/v2/movie/top250',
+        type:'GET',
+        data:{
+            start:index,
+            count:20
+        },
+        dataType:'jsonp'
+    }).done(function(ret){
+        setData(ret)
+      console.log(ret)
+    }).fail(function(){
+        console.log('error')
+    })
+  }
+  
 
-  $.ajax({
-      url:'http://api.douban.com/v2/movie/top250',
-      type:'GET',
-      data:{
-          start:0,
-          count:20
-      },
-      dataType:'jsonp'
-  }).done(function(ret){
-      setData(ret)
-    console.log(ret)
-  }).fail(function(){
-      console.log('error')
+  $('.main').scroll(function(){
+    if($('section').eq(0).height()-40 <= $('.main').scrollTop()+$('.main').height()){
+        getData()
+      }
   })
 
   function setData(data){
